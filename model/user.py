@@ -1,3 +1,4 @@
 class User:
-    def __init__(self, username: str):
+    def __init__(self, username):
         self.username = username
+        self.posts = []
