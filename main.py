@@ -21,14 +21,10 @@ class CustomJSONEncoder(json.JSONEncoder):
 
 app.json_encoder = CustomJSONEncoder
 
-@app.route('/ping', methods=['GET'])
-def ping():
-    return jsonify({'response': 'pong'})
-
 @app.route('/user', methods=['POST'])
 def create_user():
     '''
-    {"username": "Nel"}
+    {"username": "User"}
     '''
     user_json = request.get_json()
     if not user_json or 'username' not in user_json:
@@ -48,7 +44,7 @@ def get_user(username):
 @app.route('/post', methods=['POST'])
 def create_post():
     '''
-    {"body": "Hello World", "author": "Nel"}
+    {"body": "Text", "author": "User"}
     '''
     post_json = request.get_json()
     if not post_json or 'body' not in post_json or 'author' not in post_json:
@@ -84,7 +80,7 @@ def delete_post(post_id):
 @app.route('/post/<int:post_id>', methods=['PUT'])
 def update_post(post_id):
     '''
-    {"body": "Updated content", "author": "Nel"}
+    {"body": "Updated text", "author": "User"}
     '''
     if post_id >= len(posts) or post_id < 0:
         return jsonify({'error': 'Post not found'})
